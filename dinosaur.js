@@ -27,6 +27,7 @@ document.addEventListener("keydown", function (event) {
   }
 });
 
+
 function jump() {
   if (isJumping || gameOver) return;
   isJumping = true;
@@ -238,25 +239,28 @@ function updateScoreDisplay() {
 }
 
 function restartGame() {
-  // Remove gameOverText
+  isJumping = false;
+  gravity = 0.9;
+  position = 0;
+  runFrame = 1;
+  runSpeed = 5;
+  runIntervalId = null;
+  verticalVelocity = 0;
+  groundOffset = 0;
+  gameOver = false;
+  score = 0;
+  scoreIntervalId = null;
+  treePosition = 600;
+  treeIntervalId = null;
+  startRunAnimation();
+  startScore();
+
   const gameOverText = document.getElementById("gameOverMessage");
   if (gameOverText) {
     gameOverText.remove();
   }
 
-  // Show 'Restart button pressed' text if it is not there
-  const previousRestartText = document.getElementById("restartMessage");
-  if (!previousRestartText) {
-    showTextInsideGameElement({
-      id: "restartMessage",
-      text: "Restart button pressed",
-      top: "50%",
-      left: "50%",
-      right: "",
-      fontSize: "20px",
-      transform: "translate(-50%, -50%)",
-    });
-  }
+  
 }
 
 // Add restart button event listener
