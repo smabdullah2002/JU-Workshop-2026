@@ -118,6 +118,15 @@ function scrollGround() {
   setInterval(() => {
     if (gameOver) return;
 
+    console.log(score);
+    let i=1;
+    let arr=[0,100,200,300,400,500,600,700,800,900,1000];
+
+    if (score>arr[i]) {
+      runSpeed=4;
+      i=i+1;
+    }
+
     groundOffset -= runSpeed;
     game.style.backgroundPosition = groundOffset + "px bottom";
   }, 20);
