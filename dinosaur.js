@@ -8,6 +8,7 @@ let gravity = 0.9;
 let position = 0;
 let runFrame = 1;
 let runSpeed = 5;
+let duckFrame=1;
 let runIntervalId = null;
 let verticalVelocity = 0;
 let groundOffset = 0;
@@ -26,6 +27,36 @@ document.addEventListener("keydown", function (event) {
     jump();
   }
 });
+
+document.addEventListener("keydown", function (event) {
+  if ((event.code === "ArrowDown") && !gameOver) {
+    dinoDuck();
+  }
+});
+
+let isDuck=false;
+
+function dinoDuck()
+{
+  if (isDuck || gameOver) return;
+  isDuck=true;
+
+   runIntervalId = setInterval(() => {
+    if (gameOver) return;
+
+    duckFrame = duckFrame === 1 ? 2 : 1;
+    if (duckFrame === 1) {
+      dino.classList.add("duck1");
+      dino.classList.remove("duck2");
+    } else {
+      dino.classList.add("duck2");
+      dino.classList.remove("duck1");
+    }
+  }, 120);
+  
+
+}
+
 
 
 function jump() {
@@ -82,6 +113,13 @@ function moveTree() {
     }
     tree.style.left = treePosition + "px";
   }, 20);
+
+
+
+
+
+
+
 }
 
 function stopTreeMovement() {
@@ -203,6 +241,17 @@ function endGame() {
     transform: "translate(-50%, -50%)",
   });
 }
+
+// function showLifebar()
+// {
+//   const life= document.getElementById("lifebar")
+//   life.classList.add(blank_life);
+
+
+// }
+// showLifebar();
+
+
 
 // Score system
 function startScore() {

@@ -48,6 +48,10 @@ body {
   /* Run frame classes (toggled via JS) */
   #dino.run1 { background-image: url("images/dino_run_1.png"); }
   #dino.run2 { background-image: url("images/dino_run_2.png"); }
+
+  #dino.duck1{background-image: url("images/dino_duck_1.png");}
+
+  #dino.duck2{background-image: url("images/dino_duck_2.png");}
   
   #restartBtn {
     position: absolute;
