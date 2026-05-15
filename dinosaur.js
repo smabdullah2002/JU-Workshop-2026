@@ -16,6 +16,8 @@ let score = 0;
 let scoreIntervalId = null;
 let treePosition = 600;
 let treeIntervalId = null;
+let scoreUp=1;
+let updatedScore=0;
 
 restartBtn.style.display = "none";
 
@@ -65,6 +67,7 @@ function moveTree() {
       // Set random tree height in between 50px-70px after 200 score
       if (score > 200) {
         const randomHeight = Math.floor(Math.random() * 20) + 50;
+        // console.log(randomHeight);
         tree.style.height = randomHeight + "px";
         tree.style.width = 48 * (randomHeight / 100) + "px";
       }
@@ -117,14 +120,14 @@ startRunAnimation();
 function scrollGround() {
   setInterval(() => {
     if (gameOver) return;
-
-    console.log(score);
-    let i=1;
+    
     let arr=[0,100,200,300,400,500,600,700,800,900,1000];
 
-    if (score>arr[i]) {
-      runSpeed=4;
-      i=i+1;
+    console.log(updatedScore);
+    if (score>updatedScore+100) {
+      runSpeed+=1;
+      scoreUp=scoreUp+1;
+      updatedScore=updatedScore+100;
     }
 
     groundOffset -= runSpeed;
